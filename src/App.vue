@@ -20,3 +20,9 @@ export default {
   }
 };
 </script>
+
+<style>
+body * {
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
+}
+</style>
