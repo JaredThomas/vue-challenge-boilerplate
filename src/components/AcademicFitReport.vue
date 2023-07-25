@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="info">
-      <img :src="athlete.profile_image" :alt="`Profile picture of {{ athlete.name }}`" class="avatar" />
+      <Avatar :athlete-name="athlete.name" :image-url="athlete.profile_image" />
   
       <div class="infoRightSide">
         <h2 class="athleteName">{{athlete.name}}</h2>
@@ -32,11 +32,13 @@
 </template>
 
 <script>
+import Avatar from './Avatar.vue';
 import ReportTable from './ReportTable.vue';
 
 export default {
   name: "AcademicFitReport",
   components: {
+    Avatar,
     ReportTable
   },
   props: {
@@ -81,11 +83,6 @@ export default {
 </script>
 
 <style scoped>
-.avatar {
-  border-radius: 50%;
-  height: 98px;
-  width: 98px;
-}
 
 .athleteName {
   color: #00b4ff;
