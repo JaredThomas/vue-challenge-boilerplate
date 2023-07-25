@@ -20,30 +20,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="record in report" :key="record.school">
-            <th class="schoolNameColumn">{{ record.school }}</th>
-            <td :class="['athleticDivisionColumn', 'centeredColumnData']">{{ record.division }}</td>
-            <td class="conferenceColumn">{{ record.conference }}</td>
-            <td :class="['rankingColumn', 'centeredColumnData']">{{ record.ranking }}</td>
-            <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa.min.toFixed(2) }}</td>
-            <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa['25%'].toFixed(2) }}</td>
-            <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa['50%'].toFixed(2) }}</td>
-            <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa['75%'].toFixed(2) }}</td>
-            <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa.max.toFixed(2) }}</td>
-            <td :class="['testResultColumn', 'centeredColumnData']">{{ record.sat.reading.min !== 'N/A' && record.sat.reading.max !== 'N/A' ? `${record.sat.reading.min}-${record.sat.reading.max}` : 'Not Reported' }}</td>
-            <td :class="['testResultColumn', 'centeredColumnData']">{{ record.sat.math.min !== 'N/A' && record.sat.math.max !== 'N/A'  ? `${record.sat.math.min}-${record.sat.math.max}` : 'Not Reported' }}</td>
-            <td :class="['testResultColumn', 'centeredColumnData']">{{ record.act.min !== 'N/A' && record.act.max !== 'N/A' ? `${record.act.min}-${record.act.max}` : 'Not Reported' }}</td>
-            </tr>
+            <ReportTableRow v-for="(record, index) in report" :key="record.school" :record="record" :is-row-highlighted="(index + 1) % 2 === 0" />
         </tbody>
     </table>
 </template>
 
 <script>
+import ReportTableRow from './ReportTableRow.vue';
+
 export default {
   name: "ReportTable",
+  components: {
+    ReportTableRow
+  },
   props: {
     report: {
-      type: Object
+      type: Array
     }
   }
 };
@@ -78,7 +70,6 @@ table thead {
   z-index: 3;
 }
 
-table tbody th:first-child,
 table thead tr:first-child th:first-child {
   left: 0;
   position: sticky;
@@ -101,31 +92,4 @@ tbody tr:nth-child(even) th {
   background-color: #e8f0fe;
 }
 
-.athleticDivisionColumn {
-  text-align: 90px;
-}
-
-.centeredColumnData {
-  text-align: center;
-}
-
-.conferenceColumn {
-  width: 300px;
-}
-
-.gpaColumn {
-  width: 36px;
-}
-
-.testResultColumn {
-  width: 120px;
-}
-
-.rankingColumn {
-  width: 130px;
-}
-
-.schoolNameColumn {
-  width: 250px;
-}
 </style>
