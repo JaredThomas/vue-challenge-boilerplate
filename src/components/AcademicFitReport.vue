@@ -27,42 +27,37 @@
     <table>
       <thead>
         <tr>
-          <th scope="col">School Name</th>
-          <th scope="col">Athletic Div</th>
-          <th scope="col">Conference</th>
-          <th scope="col">Ranking*</th>
+          <th scope="col" rowspan="2">School Name</th>
+          <th scope="col" rowspan="2">Athletic Div</th>
+          <th scope="col" rowspan="2">Conference</th>
+          <th scope="col" rowspan="2">Ranking*<div class="tableHeaderSupplementalInfo">(DI NCAA)<br />(DII & DIII Hero Sports)</div></th>
           <th scope="colgroup" colspan="5">GPA**</th>
-          <th scope="col">SAT Reading***</th>
-          <th scope="col">SAT Math***</th>
-          <th scope="col">ACT Composite***</th>
+          <th scope="col" rowspan="2">SAT Reading***<br />25%-75%</th>
+          <th scope="col" rowspan="2">SAT Math***<br />25%-75%</th>
+          <th scope="col" rowspan="2">ACT Composite***<br />25%-75%</th>
         </tr>
         <tr>
-          <td colspan="3" />
-          <th scope="col">(DI NCAA)<br />(DII & DIII Hero Sports)</th>
           <th scope="col">Min</th>
           <th scope="col">25%</th>
           <th scope="col">50%</th>
           <th scope="col">75%</th>
           <th scope="col">Max</th>
-          <th scope="col">25%-75%</th>
-          <th scope="col">25%-75%</th>
-          <th scope="col">25%-75%</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="record in athlete.report" :key="record.school">
-          <td>{{ record.school }}</td>
-          <td>{{ record.division }}</td>
-          <td>{{ record.conference }}</td>
-          <td>{{ record.ranking }}</td>
-          <td>{{ record.gpa.min.toFixed(2) }}</td>
-          <td>{{ record.gpa['25%'].toFixed(2) }}</td>
-          <td>{{ record.gpa['50%'].toFixed(2) }}</td>
-          <td>{{ record.gpa['75%'].toFixed(2) }}</td>
-          <td>{{ record.gpa.max.toFixed(2) }}</td>
-          <td>{{ record.sat.reading.min !== 'N/A' && record.sat.reading.max !== 'N/A' ? `${record.sat.reading.min}-${record.sat.reading.max}` : 'Not Reported' }}</td>
-          <td>{{ record.sat.math.min !== 'N/A' && record.sat.math.max !== 'N/A'  ? `${record.sat.math.min}-${record.sat.math.max}` : 'Not Reported' }}</td>
-          <td>{{ record.act.min !== 'N/A' && record.act.max !== 'N/A' ? `${record.act.min}-${record.act.max}` : 'Not Reported' }}</td>
+          <td class="schoolNameColumn">{{ record.school }}</td>
+          <td :class="['athleticDivisionColumn', 'centeredColumnData']">{{ record.division }}</td>
+          <td class="conferenceColumn">{{ record.conference }}</td>
+          <td :class="['rankingColumn', 'centeredColumnData']">{{ record.ranking }}</td>
+          <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa.min.toFixed(2) }}</td>
+          <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa['25%'].toFixed(2) }}</td>
+          <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa['50%'].toFixed(2) }}</td>
+          <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa['75%'].toFixed(2) }}</td>
+          <td :class="['gpaColumn', 'centeredColumnData']">{{ record.gpa.max.toFixed(2) }}</td>
+          <td :class="['testResultColumn', 'centeredColumnData']">{{ record.sat.reading.min !== 'N/A' && record.sat.reading.max !== 'N/A' ? `${record.sat.reading.min}-${record.sat.reading.max}` : 'Not Reported' }}</td>
+          <td :class="['testResultColumn', 'centeredColumnData']">{{ record.sat.math.min !== 'N/A' && record.sat.math.max !== 'N/A'  ? `${record.sat.math.min}-${record.sat.math.max}` : 'Not Reported' }}</td>
+          <td :class="['testResultColumn', 'centeredColumnData']">{{ record.act.min !== 'N/A' && record.act.max !== 'N/A' ? `${record.act.min}-${record.act.max}` : 'Not Reported' }}</td>
         </tr>
       </tbody>
     </table>
@@ -153,7 +148,7 @@ export default {
 }
 
 .stat {
-  padding-top: 0.25rem;
+  padding-top: 0.5rem;
 }
 
 .stat, .statLabel {
@@ -172,6 +167,13 @@ thead tr td {
   background-color: #222222;
   color: #FFFFFF;
   font-size: 0.75rem;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.tableHeaderSupplementalInfo {
+  font-weight: 400;
+  font-size: 0.65rem;
 }
 
 table {
@@ -183,6 +185,39 @@ tbody td {
   color: #222222;
   font-size: 0.75rem;
   font-weight: 400;
+  padding: 0.5rem 0.25rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e8f0fe;
+}
+
+.athleticDivisionColumn {
+  text-align: 90px;
+}
+
+.centeredColumnData {
+  text-align: center;
+}
+
+.conferenceColumn {
+  width: 300px;
+}
+
+.gpaColumn {
+  width: 36px;
+}
+
+.testResultColumn {
+  width: 120px;
+}
+
+.rankingColumn {
+  width: 130px;
+}
+
+.schoolNameColumn {
+  width: 250px;
 }
 
 @media screen and (min-width: 768px) {
