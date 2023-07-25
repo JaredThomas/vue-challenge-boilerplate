@@ -23,6 +23,49 @@
         </div>
       </div>
     </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">School Name</th>
+          <th scope="col">Athletic Div</th>
+          <th scope="col">Conference</th>
+          <th scope="col">Ranking*</th>
+          <th scope="colgroup" colspan="5">GPA**</th>
+          <th scope="col">SAT Reading***</th>
+          <th scope="col">SAT Math***</th>
+          <th scope="col">ACT Composite***</th>
+        </tr>
+        <tr>
+          <td colspan="3" />
+          <th scope="col">(DI NCAA)<br />(DII & DIII Hero Sports)</th>
+          <th scope="col">Min</th>
+          <th scope="col">25%</th>
+          <th scope="col">50%</th>
+          <th scope="col">75%</th>
+          <th scope="col">Max</th>
+          <th scope="col">25%-75%</th>
+          <th scope="col">25%-75%</th>
+          <th scope="col">25%-75%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="record in athlete.report" :key="record.school">
+          <td>{{ record.school }}</td>
+          <td>{{ record.division }}</td>
+          <td>{{ record.conference }}</td>
+          <td>{{ record.ranking }}</td>
+          <td>{{ record.gpa.min.toFixed(2) }}</td>
+          <td>{{ record.gpa['25%'].toFixed(2) }}</td>
+          <td>{{ record.gpa['50%'].toFixed(2) }}</td>
+          <td>{{ record.gpa['75%'].toFixed(2) }}</td>
+          <td>{{ record.gpa.max.toFixed(2) }}</td>
+          <td>{{ record.sat.reading.min !== 'N/A' && record.sat.reading.max !== 'N/A' ? `${record.sat.reading.min}-${record.sat.reading.max}` : 'Not Reported' }}</td>
+          <td>{{ record.sat.math.min !== 'N/A' && record.sat.math.max !== 'N/A'  ? `${record.sat.math.min}-${record.sat.math.max}` : 'Not Reported' }}</td>
+          <td>{{ record.act.min !== 'N/A' && record.act.max !== 'N/A' ? `${record.act.min}-${record.act.max}` : 'Not Reported' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -90,6 +133,9 @@ export default {
 
 .infoRightSide {
   padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .statLabel {
