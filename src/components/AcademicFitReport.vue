@@ -25,7 +25,7 @@
     </div>
 
     <div class="tableContainer">
-      <ReportTable :report="athlete.report" />
+      <ReportTable :report="athlete.report" :athlete-gpa="athlete.gpa" />
     </div>
 
   </div>

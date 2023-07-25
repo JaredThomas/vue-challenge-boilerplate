@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <ReportTableRow v-for="(record, index) in report" :key="record.school" :record="record" :is-row-highlighted="(index + 1) % 2 === 0" />
+            <ReportTableRow v-for="(record, index) in report" :key="record.school" :record="record" :is-row-highlighted="(index + 1) % 2 === 0" :athlete-gpa="athleteGpa" />
         </tbody>
     </table>
 </template>
@@ -34,6 +34,7 @@ export default {
     ReportTableRow
   },
   props: {
+    athleteGpa: Number,
     report: {
       type: Array
     }
@@ -51,7 +52,6 @@ thead tr td {
   padding: 0.15rem 0;
   vertical-align: middle;
 }
-
 .tableHeaderSupplementalInfo {
   font-weight: 400;
   font-size: 0.65rem;
@@ -76,20 +76,4 @@ table thead tr:first-child th:first-child {
   top: 0;
   z-index: 2;
 }
-
-tbody td,
-tbody th {
-  background-color: #FFFFFF;
-  color: #222222;
-  font-size: 0.75rem;
-  font-weight: 400;
-  padding: 0.5rem 0.25rem;
-  text-align: left;
-}
-
-tbody tr:nth-child(even) td,
-tbody tr:nth-child(even) th {
-  background-color: #e8f0fe;
-}
-
 </style>
