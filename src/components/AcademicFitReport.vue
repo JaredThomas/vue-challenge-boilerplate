@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="info">
       <img :src="athlete.profile_image" :alt="`Profile picture of {{ athlete.name }}`" class="avatar" />
   
@@ -122,9 +122,15 @@ export default {
 
 .athleteName {
   color: #00b4ff;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
+}
+
+.container {
+  border-bottom: 8px solid #00b4ff;
+  border-top: 8px solid #00b4ff;
+  padding: 1rem 1rem 2rem;
 }
 
 .info {
@@ -147,18 +153,36 @@ export default {
 }
 
 .stat {
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 .stat, .statLabel {
   color: #222222;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 .statsList {
   list-style: none;
   padding-left: 0;
   margin: 0;
+}
+
+thead tr th,
+thead tr td {
+  background-color: #222222;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+}
+
+table {
+  border-spacing: 0;
+  margin-top: 2rem;
+}
+
+tbody td {
+  color: #222222;
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 
 @media screen and (min-width: 768px) {
