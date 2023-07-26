@@ -14,6 +14,7 @@ export default {
         imageUrl: String
     },
     computed: {
+        // Returns a hex code for a conditional background color based on the first letter of the last name
         backgroundColor: function () {
             if (!this.imageUrl && this.initials.length === 2) {
                 const lastNameFirstLetter = this.initials.charAt(1).toLowerCase();
@@ -36,6 +37,8 @@ export default {
             }
             return 'inherit';
         },
+
+        // Returns the first and last initials to be used when an image url is not provided
         initials: function () {
             const nameArray = this.athleteName.split(' ');
 

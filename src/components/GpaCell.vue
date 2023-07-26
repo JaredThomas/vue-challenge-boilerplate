@@ -10,6 +10,7 @@ export default {
         gpa: Number
     },
     computed: {
+        // returns a conditional cell background color based on the relative difference between the athlete's GPA and the school's GPA
         relativeGpaBackgroundColor: function () {
             const diff = this.gpa - this.athleteGpa;
             if (diff > 0.1) {
