@@ -178,6 +178,11 @@ export default {
 
 .footnote {
   font-size: 0.75rem;
+  padding-bottom: 0.25rem;
+}
+
+.footnote:last-child {
+  padding-bottom: 0;
 }
 
 .header {
