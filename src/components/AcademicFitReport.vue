@@ -39,6 +39,10 @@
       <ReportTable :report="athlete.report" :athlete-gpa="athlete.gpa" />
     </div>
 
+    <ul class="footnotes">
+      <li v-for="note in footnotes" :key="note" class="footnote">{{ note }}</li>
+    </ul>
+
     <div v-if="isModalOpen" class="modal">
       <div class="modalDialog">
         <div class="modalHeading">Edit Name</div>
@@ -111,6 +115,11 @@ export default {
           label: 'Desired Major',
           value: this.athlete.major
         }
+      ],
+      footnotes: [
+        '*Rankings for Division I schools based on NCAA data (www.ncaa.com) and rankings for Division II & III schools are based on data from Hero Sports (www.herosports.com/rankings)',
+        '** GPA is based on SportsRecruits members who have shown interest in (favorited) the school and have provided their GPA on their profile',
+        '***SAT and ACT scores based on national data provided by the National Center of Education Statistics- https://nces.ed.gov/ipeds/'
       ]
     }
   },
@@ -161,6 +170,14 @@ export default {
 .editableName {
   align-items: center;
   display: flex;
+}
+
+.footnotes {
+  padding-top: 1.5rem;
+}
+
+.footnote {
+  font-size: 0.75rem;
 }
 
 .header {
