@@ -8,7 +8,7 @@
         <div class="editableName">
           <h2 class="athleteName">{{athlete.name}}</h2>
           <button type="button" class="editButton">
-            <img :src="editIcon" alt="Edit athlete name" @click="() => toggleModal(true)" />
+            <img :src="editIcon" alt="Edit athlete name" @click="toggleModal(true)" />
           </button>
         </div>
 
@@ -41,11 +41,16 @@
 
     <div v-if="isModalOpen" class="modal">
       <div class="modalDialog">
-        <div>Edit Name</div>
-        <input type="text" />
-        <div>
-          <button type="button" @click="() => toggleModal(false)">Cancel</button>
-        </div>
+        <div class="modalHeading">Edit Name</div>
+        <form @submit="handleClickSave" class="modalForm">
+          <div class="formContent">
+            <input type="text" v-model="editableName" />
+          </div>
+          <div class="formFooter">
+            <button type="button" @click="toggleModal(false)" class="cancelButton">Cancel</button>
+            <button type="submit" class="saveButton">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -66,11 +71,16 @@ export default {
   props: {
     athlete: {
       type: Object,
-      required: false
+      required: true
+    },
+    updateName: {
+      type: Function,
+      required: true
     }
   },
   data: function () {
     return {
+      editableName: '',
       editIcon,
       logoUrl,
       isModalOpen: false,
@@ -105,7 +115,16 @@ export default {
     }
   },
 
+  created: function () {
+    this.editableName = this.athlete.name
+  },
+
   methods: {
+      handleClickSave: function () {
+        this.updateName(this.editableName)
+        this.toggleModal(false);
+      },
+  
       toggleModal: function (visibility) {
         this.isModalOpen = visibility;
       }
@@ -177,6 +196,8 @@ export default {
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  display: flex;
+  flex-direction: column;
   height: 200px;
   left: 50%;
   position: absolute;
@@ -198,6 +219,58 @@ export default {
   left: 0;
   width: 100%;
   z-index: 3;
+}
+
+.modalHeading {
+  color: #00b4ff;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 1rem 1rem 0;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.formContent {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.formFooter {
+  border-top: 1px solid #CCCCCC;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding: 0.5rem 1rem;
+}
+
+.cancelButton {
+  background: none;
+  border: none;
+  color: #00b4ff;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  opacity: 0.9;
+}
+
+.saveButton {
+  background-color: #00b4ff;
+  border: none;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.25rem 0.75rem;
+}
+
+.saveButton:hover {
+  opacity: 0.9;
 }
 
 .statLabel {

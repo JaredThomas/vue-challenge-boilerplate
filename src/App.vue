@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <AcademicFitReport :athlete="athlete_info"/>
+    <AcademicFitReport :athlete="athlete_info" :update-name="updateName" />
   </div>
 </template>
 
@@ -17,6 +17,14 @@ export default {
     return {
       athlete_info: AthleteData.data[0]
     };
+  },
+  methods: {
+    updateName: function (name) {
+      this.athlete_info = {
+        ...this.athlete_info,
+        name
+      }
+    }
   }
 };
 </script>
