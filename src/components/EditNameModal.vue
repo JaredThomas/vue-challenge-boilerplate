@@ -1,15 +1,17 @@
 <template>
-    <div class="modalDialog">
-        <div class="modalHeading">Edit Name</div>
-        <form @submit.prevent="onSubmit(editableName)" class="modalForm">
-            <div class="formContent">
-                <input type="text" v-model="editableName" />
-            </div>
-            <div class="formFooter">
-                <button type="button" @click="close" class="cancelButton">Cancel</button>
-                <button type="submit" class="saveButton">Save</button>
-            </div>
-        </form>
+    <div class="modal">
+        <div class="modalDialog">
+            <div class="modalHeading">Edit Name</div>
+            <form @submit.prevent="onSubmit(editableName)" class="modalForm">
+                <div class="formContent">
+                    <input type="text" v-model="editableName" />
+                </div>
+                <div class="formFooter">
+                    <button type="button" @click="close" class="cancelButton">Cancel</button>
+                    <button type="submit" class="saveButton">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 
